@@ -1,32 +1,27 @@
 $(document).ready( function() {
   const thermostat = new Thermostat();
-  $('#temperature').text(thermostat.currentTemp());
+  displayAndUpdate()
   $('#powersaver').css("background-color", checkPowerSave());
-  $('#currentUsage').css('background-color', checkEnergyMode());
 
   $('#up').click( function() {
     thermostat.up();
-    $('#temperature').text(thermostat.currentTemp());
-    $('#currentUsage').css('background-color', checkEnergyMode());
+    displayAndUpdate()
   })
 
   $('#down').click( function() {
     thermostat.down();
-    $('#temperature').text(thermostat.currentTemp());
-    $('#currentUsage').css('background-color', checkEnergyMode());
+    displayAndUpdate()
   })
 
   $('#reset').click( function() {
     thermostat.reset();
-    $('#temperature').text(thermostat.currentTemp());
-    $('#currentUsage').css('background-color', checkEnergyMode());
+    displayAndUpdate()
   })
 
   $('#powersaver').click( function() {
     thermostat.switchPowerSave();
     $('#powersaver').css("background-color", checkPowerSave());
-    $('#temperature').text(thermostat.currentTemp());
-    $('#currentUsage').css('background-color', checkEnergyMode());
+    displayAndUpdate()
   })
 
   function checkPowerSave() {
@@ -45,6 +40,11 @@ $(document).ready( function() {
     } else {
       return 'red'
     }
+  }
+
+  function displayAndUpdate() {
+    $('#temperature').text(thermostat.currentTemp());
+    $('#currentUsage').css('background-color', checkEnergyMode());
   }
 });
 
