@@ -22,20 +22,24 @@ class Thermostat {
 
     switchPowerSave(){
       this.powerSaveMode = !this.powerSaveMode
+      if (this.currentTemp() > this.MAX_LIMIT_PSN_ON) {
+        this.temperature = this.MAX_LIMIT_PSN_ON
+      }
     };
 
     isMaxTemp() {
       if (this.powerSaveMode === false) {
-         return this.temperature === this.MAX_LIMIT_PSN_OFF;
+         return this.MAX_LIMIT_PSN_OFF;
        }
-         return this.temperature === this.MAX_LIMIT_PSN_ON;
+         return this.MAX_LIMIT_PSN_ON;
     };
 
     up(){
-        if (this.isMaxTemp()) {
+        if (this.currentTemp() >= this.isMaxTemp()) {
             return;
+        } else {
+          this.temperature ++;
         }
-      this.temperature ++;
     };
 
     down(){
