@@ -20,21 +20,12 @@ class Thermostat {
        return  this.MINTEMP === this.temperature
     };
 
-    switchPowerSaveOff(){
-        this.powerSaveMode = false;
+    switchPowerSave(){
+      this.powerSaveMode = !this.powerSaveMode
     };
-
-    switchPowerSaveOn(){
-        this.powerSaveMode = true;
-    };
-
-    isPowerSaverOn(){
-      return this.powerSaveMode === true;
-    };
-
 
     isMaxTemp() {
-      if (this.isPowerSaverOn() === false) {
+      if (this.powerSaveMode === false) {
          return this.temperature === this.MAX_LIMIT_PSN_OFF;
        }
          return this.temperature === this.MAX_LIMIT_PSN_ON;
@@ -44,14 +35,14 @@ class Thermostat {
         if (this.isMaxTemp()) {
             return;
         }
-      this.temperature += 1;
+      this.temperature ++;
     };
 
     down(){
         if (this.minTemp()) {
         return;
         };
-        this.temperature -= 1;
+        this.temperature --;
     };
 
     reset(){
@@ -67,4 +58,4 @@ class Thermostat {
     }
     return "high-usage"
   };
-  };
+};

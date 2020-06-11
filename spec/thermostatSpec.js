@@ -32,7 +32,7 @@ describe("Thermostat", function(){
     });
 
     it("has a power saving mode, whilst false max 32 degrees", function(){
-        thermostat.switchPowerSaveOff();
+        thermostat.switchPowerSave();
         for( var degree = 20; degree < 32; degree+=1){
             thermostat.up();
         }
@@ -57,11 +57,11 @@ describe("Thermostat", function(){
     });
 
     it("returns high-usage if thermostat is > 25", function(){
-      thermostat.switchPowerSaveOff();
+      thermostat.switchPowerSave();
       for( var degree = 20; degree < 30; degree+=1){
           thermostat.up();
       }
       expect(thermostat.currentUsage()).toEqual("high-usage")
     });
-    
+
 });
